@@ -1,25 +1,28 @@
-
-var skills = ["Web Developer","Business Analyst"];
-
 var bio = {
 	"name" : "Joelma Costa",
 	"role" : "Web Developer",
-	"contactInfo" : "joelmacscosta@gmail.com",
-	"pictureURL" : "images/me.jpeg",
+	"contacts" : {
+	 "mobile":"+55-11-9-9223-9449",
+	 "email":"joelmacscosta@gmail.com",
+	 "github":"joelmacscosta",
+	 "location":"São Paulo"
+	},
 	"welcomeMessage" : "Welcome to know a little bit about me.",
-	"skills" : skills
+	"skills" : ["Web Developer","Business Analyst"],
+	"bioPic" : "images/me.jpeg"
+
 }
 
-var formattedName = HTMLheaderName.replace("%data%",bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
-var formattedContact = HTMLemail.replace("%data%",bio.contactInfo);
-var formattedPicture = HTMLbioPic.replace("%data%",bio.pictureURL);
-var formattedWelcomeMsg = HTMLWelcomeMsg.replace("%data%",bio.welcomeMessage);
-var formattedSkills = HTMLskills.replace("%data%",bio.skills);
+var work = {};
+work.position = "Business Analyst";
+work.employer = "Itaú";
+work.years = 3.7;
 
-$("#header").prepend(formattedSkills);
-$("#header").prepend(formattedWelcomeMsg);
-$("#header").prepend(formattedPicture);
-$("#header").prepend(formattedContact);
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
+
+var education = {};
+education["name"] = "UNICAMP - State University of Campinas";
+education["years"] = "2007-2010";
+education["city"] = "Campinas";
+
+$("#main").append(work["position"]);
+$("#main").append(education.name);
