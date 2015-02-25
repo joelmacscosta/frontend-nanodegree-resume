@@ -33,12 +33,14 @@ var projects = {
   {
     "title": "APLICATION OF FUZZY LOGIC IN THE CONSTRUCTION OF A CHAIN ISING MODEL",
     "date": "2006",
-    "description": "The traditional chain Ising model was proposed, initially, to explain physical properties as magnetic properties in metals, for example. However, this model has been applied in many other areas; for instance, neural networks, biology, economy, political science and others, if linguistic parameters (“fuzzy”) are included in the model. The purpose of this work is to introduce the fuzzy logic in the Ising model to extend its applicability to other areas. To this end, a chain Ising model with non-symmetric spins was built and, as an extension the non-symmetric spins were considered as being fuzzy numbers. The fuzzy chain Ising model was constructed by the principle of fuzzy extension in each thermodynamic quantity calculated. In the definition of asymmetric spins it was used three types of pertinence: thetriangular function, the Gaussian function with the same width as the triangular one and, a Gaussian function centered around the exact values of the original spins. The results were presented in the thermodynamic quantities of free energy and entropy. Comparisons among the behavior of thermodynamic quantities for each function of pertinence and the related results of the traditional Ising chain model were made. "
+    "description": "The traditional chain Ising model was proposed, initially, to explain physical properties as magnetic properties in metals, for example. However, this model has been applied in many other areas; for instance, neural networks, biology, economy, political science and others, if linguistic parameters (“fuzzy”) are included in the model. The purpose of this work is to introduce the fuzzy logic in the Ising model to extend its applicability to other areas. To this end, a chain Ising model with non-symmetric spins was built and, as an extension the non-symmetric spins were considered as being fuzzy numbers. The fuzzy chain Ising model was constructed by the principle of fuzzy extension in each thermodynamic quantity calculated. In the definition of asymmetric spins it was used three types of pertinence: thetriangular function, the Gaussian function with the same width as the triangular one and, a Gaussian function centered around the exact values of the original spins. The results were presented in the thermodynamic quantities of free energy and entropy. Comparisons among the behavior of thermodynamic quantities for each function of pertinence and the related results of the traditional Ising chain model were made. ",
+    "image" : "images/fuzzy.jpg"
   },
   {
     "title": "Real time rail freight cars assignment algorithm",
     "date": "2010",
-    "description": "The empty car distribution and allocation process of railroads is dynamic and involves complex mechanisms of planning. Formally, the empty car distribution and allocation process can be formulated as a resource allocation problem whose solution is a car-demand allocation. The decision making on distribution and allocation requires that the decision-maker responds quickly to answer transportation requests that could be created, canceled or modified. Empty car distribution and allocation planning is constantly reviewed during railroad operation. This paper suggests an algorithm to solve real time planning of empty car distribution and allocation problems. The algorithm is based in a combination of a network flow model with the train schedule, train routes and operation knowledge. Experimental results show that the proposed model provides more realistic and efficient solutions for the distribution and allocation than alternative methods when considering the quality of solution and computational performance."
+    "description": "The empty car distribution and allocation process of railroads is dynamic and involves complex mechanisms of planning. Formally, the empty car distribution and allocation process can be formulated as a resource allocation problem whose solution is a car-demand allocation. The decision making on distribution and allocation requires that the decision-maker responds quickly to answer transportation requests that could be created, canceled or modified. Empty car distribution and allocation planning is constantly reviewed during railroad operation. This paper suggests an algorithm to solve real time planning of empty car distribution and allocation problems. The algorithm is based in a combination of a network flow model with the train schedule, train routes and operation knowledge. Experimental results show that the proposed model provides more realistic and efficient solutions for the distribution and allocation than alternative methods when considering the quality of solution and computational performance.",
+    "image" : "images/optimization.jpg"
   }
   ]
 };
@@ -134,7 +136,18 @@ if(bio.skills.length > 0)
   // document.getElementById('topContacts').style.display = 'none';
 }
 
+function displayProjects()
+{
+  $("#projects").append(HTMLprojectStart);
+  for(project in projects.projects){
+    var formattedTitleJob = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
+    var formattedDateJob = HTMLprojectDates.replace("%data%",projects.projects[project].date);
+    var formattedDescriptionJob = HTMLprojectDescription.replace("%data%",projects.projects[project].description);
+    var formattedImageJob = HTMLprojectImage.replace("%data%",projects.projects[project].image);
+    $(".project-entry:last").append(formattedTitleJob+formattedDateJob+formattedDescriptionJob+formattedImageJob);
+  }
 
+}
 function displayWork()
 {
   for (job in work.jobs)
@@ -153,6 +166,7 @@ function displayWork()
   }
 }
 displayWork();
+displayProjects();
 
 var value = $(document).click(function(loc){
   var x = loc.pageX;
