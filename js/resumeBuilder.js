@@ -31,7 +31,7 @@ var work = {
 var projects = {
   "projects": [
   {
-    "title": "APLICATION OF FUZZY LOGIC IN THE CONSTRUCTION OF A CHAIN ISING MODEL",
+    "title": "Aplication of fuzzy logic in the construction of a chain Ising model",
     "date": "2006",
     "description": "The traditional chain Ising model was proposed, initially, to explain physical properties as magnetic properties in metals, for example. However, this model has been applied in many other areas; for instance, neural networks, biology, economy, political science and others, if linguistic parameters (“fuzzy”) are included in the model. The purpose of this work is to introduce the fuzzy logic in the Ising model to extend its applicability to other areas. To this end, a chain Ising model with non-symmetric spins was built and, as an extension the non-symmetric spins were considered as being fuzzy numbers. The fuzzy chain Ising model was constructed by the principle of fuzzy extension in each thermodynamic quantity calculated. In the definition of asymmetric spins it was used three types of pertinence: thetriangular function, the Gaussian function with the same width as the triangular one and, a Gaussian function centered around the exact values of the original spins. The results were presented in the thermodynamic quantities of free energy and entropy. Comparisons among the behavior of thermodynamic quantities for each function of pertinence and the related results of the traditional Ising chain model were made. ",
     "image" : "images/fuzzy.jpg"
@@ -117,6 +117,7 @@ var formattedEmail = HTMLemail.replace("%data%",bio.contacts.email);
 var formattedGithub = HTMLgithub.replace("%data%",bio.contacts.github);
 var formattedLocation = HTMLlocation.replace("%data%",bio.contacts.location);
 $("#topContacts").append(formattedMobile+formattedEmail+formattedGithub+formattedLocation);
+$("#footerContacts").append(formattedMobile+formattedEmail+formattedGithub+formattedLocation);
 
 var formattedBioPic = HTMLbioPic.replace("%data%",bio.bioPic);
 var formattedWelcomeMsg = HTMLWelcomeMsg.replace("%data%",bio.welcomeMessage);
@@ -135,7 +136,17 @@ if(bio.skills.length > 0)
   $("#skills").append(formattedSkill);
   // document.getElementById('topContacts').style.display = 'none';
 }
-
+function displayEducation()
+{
+  $("#education").append(HTMLschoolStart);
+  for(school in education.schools){
+    var formattedSchoolName = HTMLschoolName.replace("%data%",education.schools[school].name);
+    var formattedSchoolDegree = HTMLschoolDegree.replace("%data%",education.schools[school].degree);
+    var formattedSchoolDates = HTMLschoolDates.replace("%data%",education.schools[school].years);
+    var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[school].city);
+    $(".education-entry:last").append(formattedSchoolName+formattedSchoolDegree+formattedSchoolDates+formattedSchoolLocation);
+  }
+}
 function displayProjects()
 {
   $("#projects").append(HTMLprojectStart);
@@ -146,7 +157,6 @@ function displayProjects()
     var formattedImageJob = HTMLprojectImage.replace("%data%",projects.projects[project].image);
     $(".project-entry:last").append(formattedTitleJob+formattedDateJob+formattedDescriptionJob+formattedImageJob);
   }
-
 }
 function displayWork()
 {
@@ -167,6 +177,7 @@ function displayWork()
 }
 displayWork();
 displayProjects();
+displayEducation();
 
 var value = $(document).click(function(loc){
   var x = loc.pageX;
