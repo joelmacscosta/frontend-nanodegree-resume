@@ -55,12 +55,11 @@ var education =
     "degree": "Masters",
     "major":
     [
-    "Software Enginner",
-    "Fuzzy Logic",
-    "Optimization"
+    "Software Enginner"
     ],
     "minor":
     [
+    "Fuzzy Logic",
     "Real-time Control",
     "Optimization"
     ],
@@ -144,10 +143,26 @@ function displayEducation()
     var formattedSchoolDegree = HTMLschoolDegree.replace("%data%",education.schools[school].degree);
     var formattedSchoolDates = HTMLschoolDates.replace("%data%",education.schools[school].years);
     var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[school].city);
-    $(".education-entry:last").append(formattedSchoolName+formattedSchoolDegree+formattedSchoolDates+formattedSchoolLocation);
+    var schoolMajor="",formatedSchoolMajor;
+    for(mj in education.schools[school].major){
+      schoolMajor = schoolMajor + "  " + education.schools[school].major[mj];
+      if (mj==education.schools[school].major.length - 1){
+        formatedSchoolMajor=HTMLschoolMajor.replace("%data%",schoolMajor);
+      }
+    }
+    // var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[school].city);
+    $(".education-entry:last").append(formattedSchoolName+formattedSchoolDegree+formattedSchoolDates+formatedSchoolMajor);
+  }
+  $(".education-entry:last").append(HTMLonlineClasses);
+  for(on in education.onlineCourses){
+    var formattedOnlineTitle = HTMLonlineTitle.replace("%data%",education.onlineCourses[on].title);
+    var formattedOnlineSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[on].school);
+    var formattedOnlineDates = HTMLonlineDates.replace("%data%",education.onlineCourses[on].dates);
+    var formattedOnlineURL = HTMLonlineURL.replace("%data%",education.onlineCourses[on].url);
+    $(".education-entry:last").append(formattedOnlineTitle.replace("#",education.onlineCourses[on].url)+formattedOnlineSchool+formattedOnlineDates);
   }
 }
-function displayProjects()
+projects.display = function ()
 {
   $("#projects").append(HTMLprojectStart);
   for(project in projects.projects){
@@ -176,16 +191,24 @@ function displayWork()
   }
 }
 displayWork();
-displayProjects();
+projects.display();
 displayEducation();
 
-var value = $(document).click(function(loc){
-  var x = loc.pageX;
-  var y = loc.pageY;
-  logClicks(x,y);
-});
+// function inName(twoNames){
+//   var name1 = twoNames.split(" ")[0];
+//   var name2= twoNames.split(" ")[1];
+//   return name1[0].toUpperCase()+name1.slice(1).toLowerCase()+" "+name2.toUpperCase();
+// }
+$("#main").prepend(internationalizeButton);
+$("#mapDiv").prepend(internationalizeButton);
 
-function logClicks(x,y)
-{
-  console.log(x+", "+y);
-}
+// var value = $(document).click(function(loc){
+//   var x = loc.pageX;
+//   var y = loc.pageY;
+//   logClicks(x,y);
+// });
+
+// function logClicks(x,y)
+// {
+//   console.log(x+", "+y);
+// }
