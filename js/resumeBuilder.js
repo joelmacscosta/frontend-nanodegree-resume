@@ -51,7 +51,7 @@ var education =
   [
   {
     "name": "UNICAMP - State University of Campinas",
-    "city": "Campinas",
+    "location": "Campinas",
     "degree": "Masters",
     "major":
     [
@@ -67,7 +67,7 @@ var education =
   },
   {
     "name": "Federal University of Lavras",
-    "city": "Lavras",
+    "location": "Lavras",
     "degree": "Graduation",
     "major":
     [
@@ -86,9 +86,9 @@ var education =
   [
   {
     "title": "Web Development",
-    "school": "Udacity",
+    "school": "Udalocation",
     "dates": 2013,
-    "url": "https://www.udacity.com/course/cs253"
+    "url": "https://www.udalocation.com/course/cs253"
   },
   {
     "title": "Web Application Architectures",
@@ -98,9 +98,9 @@ var education =
   },
   {
     "title": "JavaScript Basics",
-    "school": "Udacity",
+    "school": "Udalocation",
     "dates": 2015,
-    "url": "https://www.udacity.com/course/ud804"
+    "url": "https://www.udalocation.com/course/ud804"
   }
   ]
 };
@@ -142,7 +142,7 @@ function displayEducation()
     var formattedSchoolName = HTMLschoolName.replace("%data%",education.schools[school].name);
     var formattedSchoolDegree = HTMLschoolDegree.replace("%data%",education.schools[school].degree);
     var formattedSchoolDates = HTMLschoolDates.replace("%data%",education.schools[school].years);
-    var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[school].city);
+    var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[school].location);
     var schoolMajor="",formatedSchoolMajor;
     for(mj in education.schools[school].major){
       schoolMajor = schoolMajor + "  " + education.schools[school].major[mj];
@@ -150,7 +150,7 @@ function displayEducation()
         formatedSchoolMajor=HTMLschoolMajor.replace("%data%",schoolMajor);
       }
     }
-    // var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[school].city);
+    // var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[school].location);
     $(".education-entry:last").append(formattedSchoolName+formattedSchoolDegree+formattedSchoolDates+formatedSchoolMajor);
   }
   $(".education-entry:last").append(HTMLonlineClasses);
@@ -200,7 +200,8 @@ displayEducation();
 //   return name1[0].toUpperCase()+name1.slice(1).toLowerCase()+" "+name2.toUpperCase();
 // }
 $("#main").prepend(internationalizeButton);
-$("#mapDiv").prepend(internationalizeButton);
+$("#mapDiv").append(googleMap);
+initializeMap();
 
 // var value = $(document).click(function(loc){
 //   var x = loc.pageX;
